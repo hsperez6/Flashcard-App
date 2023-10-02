@@ -1,25 +1,36 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-
 const app = express();
 
+/****************************************************
+ * SETTINGS AND DEPENDENCIES
+***************************************************/
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const cookieParser = require('cookie-parser');
 app.use(cookieParser());
+
+app.use('/static', express.static('public'));
 
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-const routes = require('./routes')
-
-app.use(routes);
 
 /****************************************************
- * 404 ERROR 
+ * ROUTERS
+***************************************************/
+const mainRoutes = require('./routes');
+const cardRoutes = require('./routes/cards');
+
+app.use(mainRoutes);
+app.use('/cards', cardRoutes);
+
+/****************************************************
+ * 404 ERROR CONSTRUCTOR
 ***************************************************/
 app.use((req, res, next) => {
-	const  err  =  new  Error('Not Found');
-	err.status  =  404;
+	const err = new Error('Not Found');
+	err.status = 404;
 	next(err);
 });
 

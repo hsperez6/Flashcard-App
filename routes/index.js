@@ -4,6 +4,8 @@ const router = express.Router();
 /****************************************************
  * ROUTES
 ***************************************************/
+
+// GET *******************************
 router.get('/', (req, res) => {  
   const name = req.cookies.username;
   if ( name ) {
@@ -11,11 +13,6 @@ router.get('/', (req, res) => {
   } else {
     res.redirect('/hello');
   }
-});
-
-router.post('/goodbye', (req, res) => {  
-  res.clearCookie('username');
-  res.redirect('/hello');
 });
 
 router.get('/hello', (req, res) => {
@@ -27,13 +24,17 @@ router.get('/hello', (req, res) => {
   }
 });
 
+// POST ******************************
+router.post('/goodbye', (req, res) => {  
+  res.clearCookie('username');
+  res.redirect('/hello');
+});
+
 router.post('/login', (req, res) => {
   res.cookie('username', req.body.username);
   res.redirect('/');
 });
 
-router.get('/cards', (req, res) => {
-  res.render('card', { prompt: "Who is buried in Grant's tomb?" })
-});
+
 
 module.exports = router; 
