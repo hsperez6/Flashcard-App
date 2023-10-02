@@ -5,7 +5,7 @@ const router = express.Router();
  * ROUTES
 ***************************************************/
 
-// GET *******************************
+// GET ROUTES ******************************
 router.get('/', (req, res) => {  
   const name = req.cookies.username;
   if ( name ) {
@@ -24,7 +24,7 @@ router.get('/hello', (req, res) => {
   }
 });
 
-// POST ******************************
+// POST ROUTES ******************************
 router.post('/goodbye', (req, res) => {  
   res.clearCookie('username');
   res.redirect('/hello');
@@ -34,7 +34,5 @@ router.post('/login', (req, res) => {
   res.cookie('username', req.body.username);
   res.redirect('/');
 });
-
-
 
 module.exports = router; 

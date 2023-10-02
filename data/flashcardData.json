@@ -19,7 +19,7 @@
           },
           {
               "question": "How many different values can booleans have?",
-              "hint": "Think: binary",
+              "hint": "Think binary",
               "answer": "2"
           },
           {

@@ -29,10 +29,8 @@ router.get('/:id', (req, res) => {
 	if (side  ===  'question') {
 		templateData.hint  =  hint;
 		templateData.toDisplay  =  'answer';
-		templateData.toDisplayCap  =  'Answer';
 	} else if (side  ===  'answer') {
 		templateData.toDisplay  =  'question';
-		templateData.toDisplayCap  =  'Question';
 	}
 	
 	res.render('card', templateData);
